@@ -55,7 +55,7 @@ Here I will show the response to each of the questions using the data above.
 
 1. Histogram of the total number steps taken each day
 
-```{r,fig.align='center',fig.width=10,fig.height=6,fig.cap="steps per day hist"}
+```{r,fig.align='center',fig.width=10,fig.height=6}
 
 plot1<-df_analytic%>%
   ggplot(.,aes(x=steps))+
@@ -119,7 +119,7 @@ d<-df_activity[103:105,]
 d<-d%>%select(interval,avg_steps_interval)
 kable(d)
 ```
-
+In the above table the row 104 corresponds to *206.1698* average steps taken, which is the highest or the maximum. You can also see that before that row the average steps are lower as well as after that row. 
 #### Imputing missing values
 
 1. Total number of missing values in the data
@@ -164,8 +164,10 @@ plot3<-df_activity%>%
   theme(plot.background = element_rect(fill = "pink2"),
         panel.background = element_rect(fill="mintcream"),
         panel.grid.minor = element_line(linetype = 2,color = "black"))
-
 plot3
+
+```
+```{r,fig.align='center',fig.height=6,fig.width=10}
 
 plot4<-df_activity%>%group_by(date)%>%summarise(steps_mean=sum(steps_imputed_mean),step_lm=sum(steps_imputed),step_orig=sum(steps,na.rm = TRUE))%>%gather(key = "type",value = "value",-date)%>%ggplot(.,aes(x=date,y=value,color=type))+geom_line(lty=1,lwd=1)
 

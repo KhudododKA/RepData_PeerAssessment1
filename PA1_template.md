@@ -86,7 +86,7 @@ plot1
 ## Warning: Removed 8 rows containing non-finite values (stat_bin).
 ```
 
-<img src="figure/unnamed-chunk-3-1.png" title="steps per day hist" alt="steps per day hist" style="display: block; margin: auto;" />
+<img src="figure/unnamed-chunk-3-1.png" title="plot of chunk unnamed-chunk-3" alt="plot of chunk unnamed-chunk-3" style="display: block; margin: auto;" />
 
 The histogram above shows the total number of steps taken each day. 
 
@@ -181,7 +181,7 @@ kable(d)
   </tr>
 </tbody>
 </table>
-
+In the above table the row 104 corresponds to *206.1698* average steps taken, which is the highest or the maximum. You can also see that before that row the average steps are lower as well as after that row. 
 #### Imputing missing values
 
 1. Total number of missing values in the data
@@ -224,7 +224,6 @@ plot3<-df_activity%>%
   theme(plot.background = element_rect(fill = "pink2"),
         panel.background = element_rect(fill="mintcream"),
         panel.grid.minor = element_line(linetype = 2,color = "black"))
-
 plot3
 ```
 
@@ -240,7 +239,7 @@ plot4<-df_activity%>%group_by(date)%>%summarise(steps_mean=sum(steps_imputed_mea
 plot4
 ```
 
-<img src="figure/unnamed-chunk-8-2.png" title="plot of chunk unnamed-chunk-8" alt="plot of chunk unnamed-chunk-8" style="display: block; margin: auto;" />
+<img src="figure/unnamed-chunk-9-1.png" title="plot of chunk unnamed-chunk-9" alt="plot of chunk unnamed-chunk-9" style="display: block; margin: auto;" />
 
 
 5. Mean and median
@@ -299,6 +298,6 @@ plot5<-df_activity%>%
 plot5
 ```
 
-<img src="figure/unnamed-chunk-10-1.png" title="plot of chunk unnamed-chunk-10" alt="plot of chunk unnamed-chunk-10" style="display: block; margin: auto;" />
+<img src="figure/unnamed-chunk-11-1.png" title="plot of chunk unnamed-chunk-11" alt="plot of chunk unnamed-chunk-11" style="display: block; margin: auto;" />
 
 Looking at the plot, it shows a higher number of steps taken in each interval for *weekend* compared to *weekdays*. 
