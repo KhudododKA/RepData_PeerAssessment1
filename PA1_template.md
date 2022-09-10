@@ -1,8 +1,5 @@
 ---
 title: "Reproducible Research Assignment 1"
-author: "Khudodod Khudododov"
-date: '2022-09-09'
-output: html_document
 ---
 
 
@@ -22,7 +19,7 @@ df_activity<-read.csv("activity.csv",header = TRUE)
 ```
 ### Processing data
 
-The first think I do after reading the data is to convert the date column into a proper date format. Second, I will extract the weekdays and the month from the date variable to use later in the analysis. And finally, I will create the analytic data by calculating the total number of steps for each day, which I will use to answer the first question.
+After reading the data, I convert the date column into a proper date format. Second, I will extract the weekdays and the month from the date variable to use later in the analysis. And finally, I will create the analytic data by calculating the total number of steps for each day, which I will use to answer the first question.
 
 
 ```r
@@ -61,7 +58,7 @@ df_analytic<-df_activity%>%
 
 ### Analysis
 
-Here I will show the response to each of the questions using the data above. To answer this question both the analytic data and the original data give the same result. It is however, a bit confusing since the title says *mean total number of steps taken per day* then <span style- color:'darkred'> question 1 </span> says to make a histogram of *the total number of steps*. 
+Here I will show the response to each of the questions using the data above.  
 
 #### Mean total number of steps taken per day
 
@@ -90,19 +87,13 @@ plot1
 ## Warning: Removed 8 rows containing non-finite values (stat_bin).
 ```
 
-<img src="figure/unnamed-chunk-3-1.png" title="plot of chunk unnamed-chunk-3" alt="plot of chunk unnamed-chunk-3" style="display: block; margin: auto;" />
+<img src="figure/unnamed-chunk-3-1.png" title="steps per day hist" alt="steps per day hist" style="display: block; margin: auto;" />
 
 The histogram above shows the total number of steps taken each day. 
 
 2. **Mean** and **Median** total steps taken
 
-```{=html}
-<div class="tabwid"><style>.cl-28d7e342{}.cl-28617ad6{font-family:'Arial';font-size:11pt;font-weight:normal;font-style:normal;text-decoration:none;color:rgba(0, 0, 0, 1.00);background-color:transparent;}.cl-28622080{margin:0;text-align:right;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:5pt;padding-top:5pt;padding-left:5pt;padding-right:5pt;line-height: 1;background-color:transparent;}.cl-2863055e{width:54pt;background-color:transparent;vertical-align: middle;border-bottom: 2pt solid rgba(102, 102, 102, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-28630572{width:54pt;background-color:transparent;vertical-align: middle;border-bottom: 2pt solid rgba(102, 102, 102, 1.00);border-top: 2pt solid rgba(102, 102, 102, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}</style><table class='cl-28d7e342'>
-```
 
-```{=html}
-<thead><tr style="overflow-wrap:break-word;"><td class="cl-28630572"><p class="cl-28622080"><span class="cl-28617ad6">mean_step</span></p></td><td class="cl-28630572"><p class="cl-28622080"><span class="cl-28617ad6">median_step</span></p></td></tr></thead><tbody><tr style="overflow-wrap:break-word;"><td class="cl-2863055e"><p class="cl-28622080"><span class="cl-28617ad6">10,766.19</span></p></td><td class="cl-2863055e"><p class="cl-28622080"><span class="cl-28617ad6">10,765</span></p></td></tr></tbody></table></div>
-```
 
 Interestingly, the *mean* and *median* steps taken does not differ from one another. 
 
@@ -111,7 +102,7 @@ Interestingly, the *mean* and *median* steps taken does not differ from one anot
 
 1. Average steps taken for each interval: time series plot
 
-To create  the series plot, I will first calculate the average steps in each interval storing it as a variable in the data. I will then construct the time series  plot using *ggplot2* package.  
+To create  the times series plot, I will first calculate the average steps in each interval storing it as a separate variable in the data. I will then construct the time series  plot using *ggplot2* package.  
 
 
 ```r
@@ -151,15 +142,19 @@ which.max(df_activity$avg_steps_interval)
 ```
 
 ```r
-flextable::flextable(df_activity[103:105,3:4])
+d<-df_activity[103:105,]
+d<-d%>%select(interval,avg_steps_interval)
+d
 ```
 
-```{=html}
-<div class="tabwid"><style>.cl-29e5de10{}.cl-29d3b55a{font-family:'Arial';font-size:11pt;font-weight:normal;font-style:normal;text-decoration:none;color:rgba(0, 0, 0, 1.00);background-color:transparent;}.cl-29d3ebba{margin:0;text-align:right;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:5pt;padding-top:5pt;padding-left:5pt;padding-right:5pt;line-height: 1;background-color:transparent;}.cl-29d3ebce{margin:0;text-align:left;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:5pt;padding-top:5pt;padding-left:5pt;padding-right:5pt;line-height: 1;background-color:transparent;}.cl-29d45f3c{width:54pt;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-29d45f46{width:54pt;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-29d45f50{width:54pt;background-color:transparent;vertical-align: middle;border-bottom: 2pt solid rgba(102, 102, 102, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-29d45f5a{width:54pt;background-color:transparent;vertical-align: middle;border-bottom: 2pt solid rgba(102, 102, 102, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-29d45f64{width:54pt;background-color:transparent;vertical-align: middle;border-bottom: 2pt solid rgba(102, 102, 102, 1.00);border-top: 2pt solid rgba(102, 102, 102, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-29d45f65{width:54pt;background-color:transparent;vertical-align: middle;border-bottom: 2pt solid rgba(102, 102, 102, 1.00);border-top: 2pt solid rgba(102, 102, 102, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}</style><table class='cl-29e5de10'>
 ```
-
-```{=html}
-<thead><tr style="overflow-wrap:break-word;"><td class="cl-29d45f64"><p class="cl-29d3ebba"><span class="cl-29d3b55a">interval</span></p></td><td class="cl-29d45f65"><p class="cl-29d3ebce"><span class="cl-29d3b55a">interval_week</span></p></td></tr></thead><tbody><tr style="overflow-wrap:break-word;"><td class="cl-29d45f3c"><p class="cl-29d3ebba"><span class="cl-29d3b55a">830</span></p></td><td class="cl-29d45f46"><p class="cl-29d3ebce"><span class="cl-29d3b55a">Monday</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-29d45f3c"><p class="cl-29d3ebba"><span class="cl-29d3b55a">835</span></p></td><td class="cl-29d45f46"><p class="cl-29d3ebce"><span class="cl-29d3b55a">Monday</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-29d45f50"><p class="cl-29d3ebba"><span class="cl-29d3b55a">840</span></p></td><td class="cl-29d45f5a"><p class="cl-29d3ebce"><span class="cl-29d3b55a">Monday</span></p></td></tr></tbody></table></div>
+## # A tibble: 3 x 2
+## # Groups:   interval [3]
+##   interval avg_steps_interval
+##      <int>              <dbl>
+## 1      830               177.
+## 2      835               206.
+## 3      840               196.
 ```
 
 #### Imputing missing values
@@ -171,7 +166,7 @@ This number is **2304**
 
 2. Imputation strategy
 
-As a simple method, I will use the average steps in each interval and replace the missing values. One can also use a regression based approach or more sophisticated machine learning models. I will the code on how regression can be used to impute. There are also imputation packages that can be used such as the *Mice* package or *Amelia*. 
+As a simple method, I will use the average steps in each interval and replace the missing values. One can also use a regression based approach or more sophisticated machine learning models. I will provide the code on how regression can be used to impute. There are also imputation packages that can be used such as the *Mice* package or *Amelia*. 
 
 3. Create new dataset with newly imputed values
 
@@ -226,11 +221,11 @@ plot4
 5. Mean and median
 
 ```{=html}
-<div class="tabwid"><style>.cl-2dd6a504{}.cl-2d621cfc{font-family:'Arial';font-size:11pt;font-weight:normal;font-style:normal;text-decoration:none;color:rgba(0, 0, 0, 1.00);background-color:transparent;}.cl-2d6253f2{margin:0;text-align:right;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:5pt;padding-top:5pt;padding-left:5pt;padding-right:5pt;line-height: 1;background-color:transparent;}.cl-2d62ab68{width:54pt;background-color:transparent;vertical-align: middle;border-bottom: 2pt solid rgba(102, 102, 102, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-2d62ab72{width:54pt;background-color:transparent;vertical-align: middle;border-bottom: 2pt solid rgba(102, 102, 102, 1.00);border-top: 2pt solid rgba(102, 102, 102, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}</style><table class='cl-2dd6a504'>
+<div class="tabwid"><style>.cl-2c4a409c{}.cl-2c3a6258{font-family:'Arial';font-size:11pt;font-weight:normal;font-style:normal;text-decoration:none;color:rgba(0, 0, 0, 1.00);background-color:transparent;}.cl-2c3a8efe{margin:0;text-align:right;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:5pt;padding-top:5pt;padding-left:5pt;padding-right:5pt;line-height: 1;background-color:transparent;}.cl-2c3adf9e{width:54pt;background-color:transparent;vertical-align: middle;border-bottom: 2pt solid rgba(102, 102, 102, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-2c3adfb2{width:54pt;background-color:transparent;vertical-align: middle;border-bottom: 2pt solid rgba(102, 102, 102, 1.00);border-top: 2pt solid rgba(102, 102, 102, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}</style><table class='cl-2c4a409c'>
 ```
 
 ```{=html}
-<thead><tr style="overflow-wrap:break-word;"><td class="cl-2d62ab72"><p class="cl-2d6253f2"><span class="cl-2d621cfc">mean_step</span></p></td><td class="cl-2d62ab72"><p class="cl-2d6253f2"><span class="cl-2d621cfc">median_step</span></p></td></tr></thead><tbody><tr style="overflow-wrap:break-word;"><td class="cl-2d62ab68"><p class="cl-2d6253f2"><span class="cl-2d621cfc">10,766.19</span></p></td><td class="cl-2d62ab68"><p class="cl-2d6253f2"><span class="cl-2d621cfc">10,766.19</span></p></td></tr></tbody></table></div>
+<thead><tr style="overflow-wrap:break-word;"><td class="cl-2c3adfb2"><p class="cl-2c3a8efe"><span class="cl-2c3a6258">mean_step</span></p></td><td class="cl-2c3adfb2"><p class="cl-2c3a8efe"><span class="cl-2c3a6258">median_step</span></p></td></tr></thead><tbody><tr style="overflow-wrap:break-word;"><td class="cl-2c3adf9e"><p class="cl-2c3a8efe"><span class="cl-2c3a6258">10,766.19</span></p></td><td class="cl-2c3adf9e"><p class="cl-2c3a8efe"><span class="cl-2c3a6258">10,766.19</span></p></td></tr></tbody></table></div>
 ```
 #### Differences in activity patterns for Weekdays and Weekend
 

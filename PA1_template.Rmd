@@ -1,13 +1,10 @@
 ---
 title: "Reproducible Research Assignment 1"
-author: "Khudodod Khudododov"
-date: '2022-09-09'
-output: html_document
 ---
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
-## packges to use
+## packages to use
 library(tidyverse)
 library(lubridate)
 library(lattice)
@@ -28,7 +25,7 @@ df_activity<-read.csv("activity.csv",header = TRUE)
 ```
 ### Processing data
 
-The first think I do after reading the data is to convert the date column into a proper date format. Second, I will extract the weekdays and the month from the date variable to use later in the analysis. And finally, I will create the analytic data by calculating the total number of steps for each day, which I will use to answer the first question.
+After reading the data, I convert the date column into a proper date format. Second, I will extract the weekdays and the month from the date variable to use later in the analysis. And finally, I will create the analytic data by calculating the total number of steps for each day, which I will use to answer the first question.
 
 ```{r}
 dim(df_activity)
@@ -51,13 +48,13 @@ df_analytic<-df_activity%>%
 
 ### Analysis
 
-Here I will show the response to each of the questions using the data above. To answer this question both the analytic data and the original data give the same result. It is however, a bit confusing since the title says *mean total number of steps taken per day* then <span style- color:'darkred'> question 1 </span> says to make a histogram of *the total number of steps*. 
+Here I will show the response to each of the questions using the data above.  
 
 #### Mean total number of steps taken per day
 
 1. Histogram of the total number steps taken each day
 
-```{r,fig.align='center',fig.width=10,fig.height=6}
+```{r,fig.align='center',fig.width=10,fig.height=6,fig.cap="steps per day hist"}
 
 plot1<-df_analytic%>%
   ggplot(.,aes(x=steps))+
@@ -79,7 +76,8 @@ The histogram above shows the total number of steps taken each day.
 ```{r avg, echo=FALSE}
 res<-df_analytic%>%summarise(mean_step=mean(steps,na.rm = TRUE),
                              median_step=median(steps,na.rm = TRUE))
-flextable::flextable(res)
+res<-flextable::flextable(res)
+print(res)
 ```
 
 Interestingly, the *mean* and *median* steps taken does not differ from one another. 
@@ -89,7 +87,7 @@ Interestingly, the *mean* and *median* steps taken does not differ from one anot
 
 1. Average steps taken for each interval: time series plot
 
-To create  the series plot, I will first calculate the average steps in each interval storing it as a variable in the data. I will then construct the time series  plot using *ggplot2* package.  
+To create  the times series plot, I will first calculate the average steps in each interval storing it as a separate variable in the data. I will then construct the time series  plot using *ggplot2* package.  
 
 ```{r}
 df_activity<-df_activity%>%
@@ -117,7 +115,9 @@ To find the maximum steps in each interval, use *which.max* command to locate th
 
 ```{r}
 which.max(df_activity$avg_steps_interval)
-flextable::flextable(df_activity[103:105,3:4])
+d<-df_activity[103:105,]
+d<-d%>%select(interval,avg_steps_interval)
+d
 ```
 
 #### Imputing missing values
@@ -132,7 +132,7 @@ This number is **`r tot_mis`**
 
 2. Imputation strategy
 
-As a simple method, I will use the average steps in each interval and replace the missing values. One can also use a regression based approach or more sophisticated machine learning models. I will the code on how regression can be used to impute. There are also imputation packages that can be used such as the *Mice* package or *Amelia*. 
+As a simple method, I will use the average steps in each interval and replace the missing values. One can also use a regression based approach or more sophisticated machine learning models. I will provide the code on how regression can be used to impute. There are also imputation packages that can be used such as the *Mice* package or *Amelia*. 
 
 3. Create new dataset with newly imputed values
 
@@ -182,7 +182,8 @@ df_analytic1<-df_activity%>%
 
 res1<-df_analytic1%>%summarise(mean_step=mean(steps_imputed_mean,na.rm = TRUE),
                              median_step=median(steps_imputed_mean,na.rm = TRUE))
-flextable::flextable(res1)
+res1<-flextable::flextable(res1)
+res1
 ```
 #### Differences in activity patterns for Weekdays and Weekend
 
