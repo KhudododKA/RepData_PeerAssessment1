@@ -215,7 +215,7 @@ df_activity<-df_activity%>%
 plot5<-df_activity%>%
   ggplot(.,aes(x=interval,y=avg_steps_interval1,color=day_type))+
   geom_line(show.legend = FALSE,lty=1,lwd=1)+scale_x_continuous(breaks = seq(0,2400,by=120))+
-  facet_grid(day_type~.)+
+  facet_wrap(day_type~.,nrow = 2)+
   labs(title = "Average steps per interval",subtitle = "Weekend vs Weekdays",
        y="average steps taken",x="")+
   theme(plot.title = element_text(color = "white"),
