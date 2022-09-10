@@ -69,9 +69,7 @@ plot1<-df_analytic%>%
         panel.background = element_rect(fill="mintcream"),
         panel.grid.minor = element_line(linetype = 2,color = "black"))
 
-png(filename = "plot1.png")
 plot1
-dev.off()
 ```
 
 The histogram above shows the total number of steps taken each day. 
@@ -110,9 +108,7 @@ plot2<-df_activity%>%
         axis.text.y = element_text(size = 7.5,color = "white"),
         plot.title = element_text(colour = "white"))
 
-png(filename = "plot2.png")
 plot2
-dev.off()
 ```
 
 2. Maximum steps for specific interval
@@ -169,15 +165,11 @@ plot3<-df_activity%>%
         panel.background = element_rect(fill="mintcream"),
         panel.grid.minor = element_line(linetype = 2,color = "black"))
 
-png(filename = "plot3.png")
 plot3
-dev.off()
 
 plot4<-df_activity%>%group_by(date)%>%summarise(steps_mean=sum(steps_imputed_mean),step_lm=sum(steps_imputed),step_orig=sum(steps,na.rm = TRUE))%>%gather(key = "type",value = "value",-date)%>%ggplot(.,aes(x=date,y=value,color=type))+geom_line(lty=1,lwd=1)
 
-png(filename = "plot4.png")
 plot4
-dev.off()
 ```
 
 
@@ -227,9 +219,7 @@ plot5<-df_activity%>%
         strip.placement = "outside",
         strip.text = element_text(face = "bold"))
 
-png(filename = "plot5.png")
 plot5
-dev.off()
 ```
 
 Looking at the plot, it shows a higher number of steps taken in each interval for *weekend* compared to *weekdays*. 

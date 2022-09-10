@@ -79,7 +79,6 @@ plot1<-df_analytic%>%
         panel.background = element_rect(fill="mintcream"),
         panel.grid.minor = element_line(linetype = 2,color = "black"))
 
-png(filename = "plot1.png")
 plot1
 ```
 
@@ -91,25 +90,18 @@ plot1
 ## Warning: Removed 8 rows containing non-finite values (stat_bin).
 ```
 
-```r
-dev.off()
-```
-
-```
-## png 
-##   2
-```
+<img src="figure/unnamed-chunk-3-1.png" title="plot of chunk unnamed-chunk-3" alt="plot of chunk unnamed-chunk-3" style="display: block; margin: auto;" />
 
 The histogram above shows the total number of steps taken each day. 
 
 2. **Mean** and **Median** total steps taken
 
 ```{=html}
-<div class="tabwid"><style>.cl-dcd86e32{}.cl-dcc80f38{font-family:'Arial';font-size:11pt;font-weight:normal;font-style:normal;text-decoration:none;color:rgba(0, 0, 0, 1.00);background-color:transparent;}.cl-dcc8412e{margin:0;text-align:right;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:5pt;padding-top:5pt;padding-left:5pt;padding-right:5pt;line-height: 1;background-color:transparent;}.cl-dcc8a60a{width:54pt;background-color:transparent;vertical-align: middle;border-bottom: 2pt solid rgba(102, 102, 102, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-dcc8a61e{width:54pt;background-color:transparent;vertical-align: middle;border-bottom: 2pt solid rgba(102, 102, 102, 1.00);border-top: 2pt solid rgba(102, 102, 102, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}</style><table class='cl-dcd86e32'>
+<div class="tabwid"><style>.cl-28d7e342{}.cl-28617ad6{font-family:'Arial';font-size:11pt;font-weight:normal;font-style:normal;text-decoration:none;color:rgba(0, 0, 0, 1.00);background-color:transparent;}.cl-28622080{margin:0;text-align:right;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:5pt;padding-top:5pt;padding-left:5pt;padding-right:5pt;line-height: 1;background-color:transparent;}.cl-2863055e{width:54pt;background-color:transparent;vertical-align: middle;border-bottom: 2pt solid rgba(102, 102, 102, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-28630572{width:54pt;background-color:transparent;vertical-align: middle;border-bottom: 2pt solid rgba(102, 102, 102, 1.00);border-top: 2pt solid rgba(102, 102, 102, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}</style><table class='cl-28d7e342'>
 ```
 
 ```{=html}
-<thead><tr style="overflow-wrap:break-word;"><td class="cl-dcc8a61e"><p class="cl-dcc8412e"><span class="cl-dcc80f38">mean_step</span></p></td><td class="cl-dcc8a61e"><p class="cl-dcc8412e"><span class="cl-dcc80f38">median_step</span></p></td></tr></thead><tbody><tr style="overflow-wrap:break-word;"><td class="cl-dcc8a60a"><p class="cl-dcc8412e"><span class="cl-dcc80f38">10,766.19</span></p></td><td class="cl-dcc8a60a"><p class="cl-dcc8412e"><span class="cl-dcc80f38">10,765</span></p></td></tr></tbody></table></div>
+<thead><tr style="overflow-wrap:break-word;"><td class="cl-28630572"><p class="cl-28622080"><span class="cl-28617ad6">mean_step</span></p></td><td class="cl-28630572"><p class="cl-28622080"><span class="cl-28617ad6">median_step</span></p></td></tr></thead><tbody><tr style="overflow-wrap:break-word;"><td class="cl-2863055e"><p class="cl-28622080"><span class="cl-28617ad6">10,766.19</span></p></td><td class="cl-2863055e"><p class="cl-28622080"><span class="cl-28617ad6">10,765</span></p></td></tr></tbody></table></div>
 ```
 
 Interestingly, the *mean* and *median* steps taken does not differ from one another. 
@@ -140,15 +132,10 @@ plot2<-df_activity%>%
         axis.text.y = element_text(size = 7.5,color = "white"),
         plot.title = element_text(colour = "white"))
 
-png(filename = "plot2.png")
 plot2
-dev.off()
 ```
 
-```
-## png 
-##   2
-```
+<img src="figure/plot2-1.png" title="plot of chunk plot2" alt="plot of chunk plot2" style="display: block; margin: auto;" />
 
 2. Maximum steps for specific interval
 
@@ -168,11 +155,11 @@ flextable::flextable(df_activity[103:105,3:4])
 ```
 
 ```{=html}
-<div class="tabwid"><style>.cl-dd8fac6e{}.cl-dd7a315e{font-family:'Arial';font-size:11pt;font-weight:normal;font-style:normal;text-decoration:none;color:rgba(0, 0, 0, 1.00);background-color:transparent;}.cl-dd7a5d50{margin:0;text-align:right;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:5pt;padding-top:5pt;padding-left:5pt;padding-right:5pt;line-height: 1;background-color:transparent;}.cl-dd7a5d5a{margin:0;text-align:left;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:5pt;padding-top:5pt;padding-left:5pt;padding-right:5pt;line-height: 1;background-color:transparent;}.cl-dd7acdda{width:54pt;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-dd7acdee{width:54pt;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-dd7acdf8{width:54pt;background-color:transparent;vertical-align: middle;border-bottom: 2pt solid rgba(102, 102, 102, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-dd7acdf9{width:54pt;background-color:transparent;vertical-align: middle;border-bottom: 2pt solid rgba(102, 102, 102, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-dd7ace02{width:54pt;background-color:transparent;vertical-align: middle;border-bottom: 2pt solid rgba(102, 102, 102, 1.00);border-top: 2pt solid rgba(102, 102, 102, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-dd7ace0c{width:54pt;background-color:transparent;vertical-align: middle;border-bottom: 2pt solid rgba(102, 102, 102, 1.00);border-top: 2pt solid rgba(102, 102, 102, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}</style><table class='cl-dd8fac6e'>
+<div class="tabwid"><style>.cl-29e5de10{}.cl-29d3b55a{font-family:'Arial';font-size:11pt;font-weight:normal;font-style:normal;text-decoration:none;color:rgba(0, 0, 0, 1.00);background-color:transparent;}.cl-29d3ebba{margin:0;text-align:right;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:5pt;padding-top:5pt;padding-left:5pt;padding-right:5pt;line-height: 1;background-color:transparent;}.cl-29d3ebce{margin:0;text-align:left;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:5pt;padding-top:5pt;padding-left:5pt;padding-right:5pt;line-height: 1;background-color:transparent;}.cl-29d45f3c{width:54pt;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-29d45f46{width:54pt;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-29d45f50{width:54pt;background-color:transparent;vertical-align: middle;border-bottom: 2pt solid rgba(102, 102, 102, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-29d45f5a{width:54pt;background-color:transparent;vertical-align: middle;border-bottom: 2pt solid rgba(102, 102, 102, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-29d45f64{width:54pt;background-color:transparent;vertical-align: middle;border-bottom: 2pt solid rgba(102, 102, 102, 1.00);border-top: 2pt solid rgba(102, 102, 102, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-29d45f65{width:54pt;background-color:transparent;vertical-align: middle;border-bottom: 2pt solid rgba(102, 102, 102, 1.00);border-top: 2pt solid rgba(102, 102, 102, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}</style><table class='cl-29e5de10'>
 ```
 
 ```{=html}
-<thead><tr style="overflow-wrap:break-word;"><td class="cl-dd7ace02"><p class="cl-dd7a5d50"><span class="cl-dd7a315e">interval</span></p></td><td class="cl-dd7ace0c"><p class="cl-dd7a5d5a"><span class="cl-dd7a315e">interval_week</span></p></td></tr></thead><tbody><tr style="overflow-wrap:break-word;"><td class="cl-dd7acdda"><p class="cl-dd7a5d50"><span class="cl-dd7a315e">830</span></p></td><td class="cl-dd7acdee"><p class="cl-dd7a5d5a"><span class="cl-dd7a315e">Monday</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-dd7acdda"><p class="cl-dd7a5d50"><span class="cl-dd7a315e">835</span></p></td><td class="cl-dd7acdee"><p class="cl-dd7a5d5a"><span class="cl-dd7a315e">Monday</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-dd7acdf8"><p class="cl-dd7a5d50"><span class="cl-dd7a315e">840</span></p></td><td class="cl-dd7acdf9"><p class="cl-dd7a5d5a"><span class="cl-dd7a315e">Monday</span></p></td></tr></tbody></table></div>
+<thead><tr style="overflow-wrap:break-word;"><td class="cl-29d45f64"><p class="cl-29d3ebba"><span class="cl-29d3b55a">interval</span></p></td><td class="cl-29d45f65"><p class="cl-29d3ebce"><span class="cl-29d3b55a">interval_week</span></p></td></tr></thead><tbody><tr style="overflow-wrap:break-word;"><td class="cl-29d45f3c"><p class="cl-29d3ebba"><span class="cl-29d3b55a">830</span></p></td><td class="cl-29d45f46"><p class="cl-29d3ebce"><span class="cl-29d3b55a">Monday</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-29d45f3c"><p class="cl-29d3ebba"><span class="cl-29d3b55a">835</span></p></td><td class="cl-29d45f46"><p class="cl-29d3ebce"><span class="cl-29d3b55a">Monday</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-29d45f50"><p class="cl-29d3ebba"><span class="cl-29d3b55a">840</span></p></td><td class="cl-29d45f5a"><p class="cl-29d3ebce"><span class="cl-29d3b55a">Monday</span></p></td></tr></tbody></table></div>
 ```
 
 #### Imputing missing values
@@ -218,7 +205,6 @@ plot3<-df_activity%>%
         panel.background = element_rect(fill="mintcream"),
         panel.grid.minor = element_line(linetype = 2,color = "black"))
 
-png(filename = "plot3.png")
 plot3
 ```
 
@@ -226,37 +212,25 @@ plot3
 ## `stat_bin()` using `bins = 30`. Pick better value with `binwidth`.
 ```
 
-```r
-dev.off()
-```
-
-```
-## png 
-##   2
-```
+![plot of chunk unnamed-chunk-8](figure/unnamed-chunk-8-1.png)
 
 ```r
 plot4<-df_activity%>%group_by(date)%>%summarise(steps_mean=sum(steps_imputed_mean),step_lm=sum(steps_imputed),step_orig=sum(steps,na.rm = TRUE))%>%gather(key = "type",value = "value",-date)%>%ggplot(.,aes(x=date,y=value,color=type))+geom_line(lty=1,lwd=1)
 
-png(filename = "plot4.png")
 plot4
-dev.off()
 ```
 
-```
-## png 
-##   2
-```
+![plot of chunk unnamed-chunk-8](figure/unnamed-chunk-8-2.png)
 
 
 5. Mean and median
 
 ```{=html}
-<div class="tabwid"><style>.cl-dff81d92{}.cl-dfd0dd36{font-family:'Arial';font-size:11pt;font-weight:normal;font-style:normal;text-decoration:none;color:rgba(0, 0, 0, 1.00);background-color:transparent;}.cl-dfd11576{margin:0;text-align:right;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:5pt;padding-top:5pt;padding-left:5pt;padding-right:5pt;line-height: 1;background-color:transparent;}.cl-dfd195e6{width:54pt;background-color:transparent;vertical-align: middle;border-bottom: 2pt solid rgba(102, 102, 102, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-dfd195fa{width:54pt;background-color:transparent;vertical-align: middle;border-bottom: 2pt solid rgba(102, 102, 102, 1.00);border-top: 2pt solid rgba(102, 102, 102, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}</style><table class='cl-dff81d92'>
+<div class="tabwid"><style>.cl-2dd6a504{}.cl-2d621cfc{font-family:'Arial';font-size:11pt;font-weight:normal;font-style:normal;text-decoration:none;color:rgba(0, 0, 0, 1.00);background-color:transparent;}.cl-2d6253f2{margin:0;text-align:right;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:5pt;padding-top:5pt;padding-left:5pt;padding-right:5pt;line-height: 1;background-color:transparent;}.cl-2d62ab68{width:54pt;background-color:transparent;vertical-align: middle;border-bottom: 2pt solid rgba(102, 102, 102, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-2d62ab72{width:54pt;background-color:transparent;vertical-align: middle;border-bottom: 2pt solid rgba(102, 102, 102, 1.00);border-top: 2pt solid rgba(102, 102, 102, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}</style><table class='cl-2dd6a504'>
 ```
 
 ```{=html}
-<thead><tr style="overflow-wrap:break-word;"><td class="cl-dfd195fa"><p class="cl-dfd11576"><span class="cl-dfd0dd36">mean_step</span></p></td><td class="cl-dfd195fa"><p class="cl-dfd11576"><span class="cl-dfd0dd36">median_step</span></p></td></tr></thead><tbody><tr style="overflow-wrap:break-word;"><td class="cl-dfd195e6"><p class="cl-dfd11576"><span class="cl-dfd0dd36">10,766.19</span></p></td><td class="cl-dfd195e6"><p class="cl-dfd11576"><span class="cl-dfd0dd36">10,766.19</span></p></td></tr></tbody></table></div>
+<thead><tr style="overflow-wrap:break-word;"><td class="cl-2d62ab72"><p class="cl-2d6253f2"><span class="cl-2d621cfc">mean_step</span></p></td><td class="cl-2d62ab72"><p class="cl-2d6253f2"><span class="cl-2d621cfc">median_step</span></p></td></tr></thead><tbody><tr style="overflow-wrap:break-word;"><td class="cl-2d62ab68"><p class="cl-2d6253f2"><span class="cl-2d621cfc">10,766.19</span></p></td><td class="cl-2d62ab68"><p class="cl-2d6253f2"><span class="cl-2d621cfc">10,766.19</span></p></td></tr></tbody></table></div>
 ```
 #### Differences in activity patterns for Weekdays and Weekend
 
@@ -295,14 +269,9 @@ plot5<-df_activity%>%
         strip.placement = "outside",
         strip.text = element_text(face = "bold"))
 
-png(filename = "plot5.png")
 plot5
-dev.off()
 ```
 
-```
-## png 
-##   2
-```
+<img src="figure/unnamed-chunk-10-1.png" title="plot of chunk unnamed-chunk-10" alt="plot of chunk unnamed-chunk-10" style="display: block; margin: auto;" />
 
 Looking at the plot, it shows a higher number of steps taken in each interval for *weekend* compared to *weekdays*. 
