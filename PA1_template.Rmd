@@ -230,6 +230,7 @@ plot5<-df_activity%>%
         strip.text = element_text(face = "bold"))
 
 plot5
+
 ```
 
 Looking at the plot, it shows a higher number of steps taken in each interval for *weekend* compared to *weekdays*. 
