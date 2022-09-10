@@ -59,7 +59,7 @@ Here I will show the response to each of the questions using the data above. To 
 
 ```{r,fig.align='center',fig.width=10,fig.height=6}
 
-df_analytic%>%
+plot1<-df_analytic%>%
   ggplot(.,aes(x=steps))+
   geom_histogram(fill="slateblue",alpha=0.7,color="darkblue")+
   theme_classic()+
@@ -68,6 +68,10 @@ df_analytic%>%
   theme(plot.background = element_rect(fill = "pink2"),
         panel.background = element_rect(fill="mintcream"),
         panel.grid.minor = element_line(linetype = 2,color = "black"))
+
+png(filename = "plot1.png")
+plot1
+dev.off()
 ```
 
 The histogram above shows the total number of steps taken each day. 
@@ -95,7 +99,7 @@ df_activity<-df_activity%>%
 ```
 
 ```{r plot2, fig.align='center',fig.height=6,fig.width=10}
-df_activity%>%
+plot2<-df_activity%>%
   ggplot(.,aes(x=interval,y=avg_steps_interval))+
   geom_line(lty=1,lwd=1,colour="darkred")+scale_x_continuous(breaks = seq(0,2400,by=60))+
   labs(title = "Average steps taken in 5-minute interval",y="average steps taken")+
@@ -105,6 +109,10 @@ df_activity%>%
         axis.text.x = element_text(size = 7.5,angle = 25,colour = "white"),
         axis.text.y = element_text(size = 7.5,color = "white"),
         plot.title = element_text(colour = "white"))
+
+png(filename = "plot2.png")
+plot2
+dev.off()
 ```
 
 2. Maximum steps for specific interval
@@ -149,7 +157,7 @@ df_activity<-df_activity%>%
 In general imputing based on the mean does provide a different estimate. The mean usually tends to either over estimate or under estimate depending on the extreme values in the data. Since, this is a time series data the number of steps changes based on the interval and days. Below, I provide the two plots comparing the mean estimation with the original data on the number of steps per interval. The second plot after histogram compares the original number of steps with regression based approach and the mean based approach to imputation. Both estimation vary from the original, however the regression based approach seems to work better than the simple mean based imputation. 
 
 ```{r}
-df_activity%>%
+plot3<-df_activity%>%
   group_by(date)%>%
   summarise(steps_imputed=sum(steps_imputed_mean))%>%
   ggplot(.,aes(x=steps_imputed))+
@@ -161,8 +169,15 @@ df_activity%>%
         panel.background = element_rect(fill="mintcream"),
         panel.grid.minor = element_line(linetype = 2,color = "black"))
 
+png(filename = "plot3.png")
+plot3
+dev.off()
 
-df_activity%>%group_by(date)%>%summarise(steps_mean=sum(steps_imputed_mean),step_lm=sum(steps_imputed),step_orig=sum(steps,na.rm = TRUE))%>%gather(key = "type",value = "value",-date)%>%ggplot(.,aes(x=date,y=value,color=type))+geom_line(lty=1,lwd=1)
+plot4<-df_activity%>%group_by(date)%>%summarise(steps_mean=sum(steps_imputed_mean),step_lm=sum(steps_imputed),step_orig=sum(steps,na.rm = TRUE))%>%gather(key = "type",value = "value",-date)%>%ggplot(.,aes(x=date,y=value,color=type))+geom_line(lty=1,lwd=1)
+
+png(filename = "plot4.png")
+plot4
+dev.off()
 ```
 
 
@@ -195,7 +210,7 @@ df_activity<-df_activity%>%
 2. Average steps for each interval by type of day: Weekend or Weekdays
 
 ```{r, fig.align='center',fig.height=6,fig.width=10}
-df_activity%>%
+plot5<-df_activity%>%
   ggplot(.,aes(x=interval,y=avg_steps_interval1,color=day_type))+
   geom_line(show.legend = FALSE,lty=1,lwd=1)+scale_x_continuous(breaks = seq(0,2400,by=120))+
   facet_grid(day_type~.)+
@@ -211,6 +226,10 @@ df_activity%>%
         strip.background = element_rect(fill = "pink"),
         strip.placement = "outside",
         strip.text = element_text(face = "bold"))
+
+png(filename = "plot5.png")
+plot5
+dev.off()
 ```
 
 Looking at the plot, it shows a higher number of steps taken in each interval for *weekend* compared to *weekdays*. 

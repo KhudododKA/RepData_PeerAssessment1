@@ -69,7 +69,7 @@ Here I will show the response to each of the questions using the data above. To 
 
 
 ```r
-df_analytic%>%
+plot1<-df_analytic%>%
   ggplot(.,aes(x=steps))+
   geom_histogram(fill="slateblue",alpha=0.7,color="darkblue")+
   theme_classic()+
@@ -78,6 +78,9 @@ df_analytic%>%
   theme(plot.background = element_rect(fill = "pink2"),
         panel.background = element_rect(fill="mintcream"),
         panel.grid.minor = element_line(linetype = 2,color = "black"))
+
+png(filename = "plot1.png")
+plot1
 ```
 
 ```
@@ -88,18 +91,25 @@ df_analytic%>%
 ## Warning: Removed 8 rows containing non-finite values (stat_bin).
 ```
 
-<img src="figure/unnamed-chunk-18-1.png" title="plot of chunk unnamed-chunk-18" alt="plot of chunk unnamed-chunk-18" style="display: block; margin: auto;" />
+```r
+dev.off()
+```
+
+```
+## png 
+##   2
+```
 
 The histogram above shows the total number of steps taken each day. 
 
 2. **Mean** and **Median** total steps taken
 
 ```{=html}
-<div class="tabwid"><style>.cl-d54efe1e{}.cl-d53bfc4c{font-family:'Arial';font-size:11pt;font-weight:normal;font-style:normal;text-decoration:none;color:rgba(0, 0, 0, 1.00);background-color:transparent;}.cl-d53c235c{margin:0;text-align:right;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:5pt;padding-top:5pt;padding-left:5pt;padding-right:5pt;line-height: 1;background-color:transparent;}.cl-d53f908c{width:54pt;background-color:transparent;vertical-align: middle;border-bottom: 2pt solid rgba(102, 102, 102, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-d53f90aa{width:54pt;background-color:transparent;vertical-align: middle;border-bottom: 2pt solid rgba(102, 102, 102, 1.00);border-top: 2pt solid rgba(102, 102, 102, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}</style><table class='cl-d54efe1e'>
+<div class="tabwid"><style>.cl-dcd86e32{}.cl-dcc80f38{font-family:'Arial';font-size:11pt;font-weight:normal;font-style:normal;text-decoration:none;color:rgba(0, 0, 0, 1.00);background-color:transparent;}.cl-dcc8412e{margin:0;text-align:right;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:5pt;padding-top:5pt;padding-left:5pt;padding-right:5pt;line-height: 1;background-color:transparent;}.cl-dcc8a60a{width:54pt;background-color:transparent;vertical-align: middle;border-bottom: 2pt solid rgba(102, 102, 102, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-dcc8a61e{width:54pt;background-color:transparent;vertical-align: middle;border-bottom: 2pt solid rgba(102, 102, 102, 1.00);border-top: 2pt solid rgba(102, 102, 102, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}</style><table class='cl-dcd86e32'>
 ```
 
 ```{=html}
-<thead><tr style="overflow-wrap:break-word;"><td class="cl-d53f90aa"><p class="cl-d53c235c"><span class="cl-d53bfc4c">mean_step</span></p></td><td class="cl-d53f90aa"><p class="cl-d53c235c"><span class="cl-d53bfc4c">median_step</span></p></td></tr></thead><tbody><tr style="overflow-wrap:break-word;"><td class="cl-d53f908c"><p class="cl-d53c235c"><span class="cl-d53bfc4c">10,766.19</span></p></td><td class="cl-d53f908c"><p class="cl-d53c235c"><span class="cl-d53bfc4c">10,765</span></p></td></tr></tbody></table></div>
+<thead><tr style="overflow-wrap:break-word;"><td class="cl-dcc8a61e"><p class="cl-dcc8412e"><span class="cl-dcc80f38">mean_step</span></p></td><td class="cl-dcc8a61e"><p class="cl-dcc8412e"><span class="cl-dcc80f38">median_step</span></p></td></tr></thead><tbody><tr style="overflow-wrap:break-word;"><td class="cl-dcc8a60a"><p class="cl-dcc8412e"><span class="cl-dcc80f38">10,766.19</span></p></td><td class="cl-dcc8a60a"><p class="cl-dcc8412e"><span class="cl-dcc80f38">10,765</span></p></td></tr></tbody></table></div>
 ```
 
 Interestingly, the *mean* and *median* steps taken does not differ from one another. 
@@ -119,7 +129,7 @@ df_activity<-df_activity%>%
 
 
 ```r
-df_activity%>%
+plot2<-df_activity%>%
   ggplot(.,aes(x=interval,y=avg_steps_interval))+
   geom_line(lty=1,lwd=1,colour="darkred")+scale_x_continuous(breaks = seq(0,2400,by=60))+
   labs(title = "Average steps taken in 5-minute interval",y="average steps taken")+
@@ -129,9 +139,16 @@ df_activity%>%
         axis.text.x = element_text(size = 7.5,angle = 25,colour = "white"),
         axis.text.y = element_text(size = 7.5,color = "white"),
         plot.title = element_text(colour = "white"))
+
+png(filename = "plot2.png")
+plot2
+dev.off()
 ```
 
-<img src="figure/plot2-1.png" title="plot of chunk plot2" alt="plot of chunk plot2" style="display: block; margin: auto;" />
+```
+## png 
+##   2
+```
 
 2. Maximum steps for specific interval
 
@@ -151,11 +168,11 @@ flextable::flextable(df_activity[103:105,3:4])
 ```
 
 ```{=html}
-<div class="tabwid"><style>.cl-d6b8a9da{}.cl-d643e1f4{font-family:'Arial';font-size:11pt;font-weight:normal;font-style:normal;text-decoration:none;color:rgba(0, 0, 0, 1.00);background-color:transparent;}.cl-d6440968{margin:0;text-align:right;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:5pt;padding-top:5pt;padding-left:5pt;padding-right:5pt;line-height: 1;background-color:transparent;}.cl-d6440972{margin:0;text-align:left;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:5pt;padding-top:5pt;padding-left:5pt;padding-right:5pt;line-height: 1;background-color:transparent;}.cl-d6447740{width:54pt;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-d6447754{width:54pt;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-d644775e{width:54pt;background-color:transparent;vertical-align: middle;border-bottom: 2pt solid rgba(102, 102, 102, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-d644775f{width:54pt;background-color:transparent;vertical-align: middle;border-bottom: 2pt solid rgba(102, 102, 102, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-d6447768{width:54pt;background-color:transparent;vertical-align: middle;border-bottom: 2pt solid rgba(102, 102, 102, 1.00);border-top: 2pt solid rgba(102, 102, 102, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-d6447772{width:54pt;background-color:transparent;vertical-align: middle;border-bottom: 2pt solid rgba(102, 102, 102, 1.00);border-top: 2pt solid rgba(102, 102, 102, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}</style><table class='cl-d6b8a9da'>
+<div class="tabwid"><style>.cl-dd8fac6e{}.cl-dd7a315e{font-family:'Arial';font-size:11pt;font-weight:normal;font-style:normal;text-decoration:none;color:rgba(0, 0, 0, 1.00);background-color:transparent;}.cl-dd7a5d50{margin:0;text-align:right;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:5pt;padding-top:5pt;padding-left:5pt;padding-right:5pt;line-height: 1;background-color:transparent;}.cl-dd7a5d5a{margin:0;text-align:left;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:5pt;padding-top:5pt;padding-left:5pt;padding-right:5pt;line-height: 1;background-color:transparent;}.cl-dd7acdda{width:54pt;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-dd7acdee{width:54pt;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-dd7acdf8{width:54pt;background-color:transparent;vertical-align: middle;border-bottom: 2pt solid rgba(102, 102, 102, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-dd7acdf9{width:54pt;background-color:transparent;vertical-align: middle;border-bottom: 2pt solid rgba(102, 102, 102, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-dd7ace02{width:54pt;background-color:transparent;vertical-align: middle;border-bottom: 2pt solid rgba(102, 102, 102, 1.00);border-top: 2pt solid rgba(102, 102, 102, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-dd7ace0c{width:54pt;background-color:transparent;vertical-align: middle;border-bottom: 2pt solid rgba(102, 102, 102, 1.00);border-top: 2pt solid rgba(102, 102, 102, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}</style><table class='cl-dd8fac6e'>
 ```
 
 ```{=html}
-<thead><tr style="overflow-wrap:break-word;"><td class="cl-d6447768"><p class="cl-d6440968"><span class="cl-d643e1f4">interval</span></p></td><td class="cl-d6447772"><p class="cl-d6440972"><span class="cl-d643e1f4">interval_week</span></p></td></tr></thead><tbody><tr style="overflow-wrap:break-word;"><td class="cl-d6447740"><p class="cl-d6440968"><span class="cl-d643e1f4">830</span></p></td><td class="cl-d6447754"><p class="cl-d6440972"><span class="cl-d643e1f4">Monday</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-d6447740"><p class="cl-d6440968"><span class="cl-d643e1f4">835</span></p></td><td class="cl-d6447754"><p class="cl-d6440972"><span class="cl-d643e1f4">Monday</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-d644775e"><p class="cl-d6440968"><span class="cl-d643e1f4">840</span></p></td><td class="cl-d644775f"><p class="cl-d6440972"><span class="cl-d643e1f4">Monday</span></p></td></tr></tbody></table></div>
+<thead><tr style="overflow-wrap:break-word;"><td class="cl-dd7ace02"><p class="cl-dd7a5d50"><span class="cl-dd7a315e">interval</span></p></td><td class="cl-dd7ace0c"><p class="cl-dd7a5d5a"><span class="cl-dd7a315e">interval_week</span></p></td></tr></thead><tbody><tr style="overflow-wrap:break-word;"><td class="cl-dd7acdda"><p class="cl-dd7a5d50"><span class="cl-dd7a315e">830</span></p></td><td class="cl-dd7acdee"><p class="cl-dd7a5d5a"><span class="cl-dd7a315e">Monday</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-dd7acdda"><p class="cl-dd7a5d50"><span class="cl-dd7a315e">835</span></p></td><td class="cl-dd7acdee"><p class="cl-dd7a5d5a"><span class="cl-dd7a315e">Monday</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-dd7acdf8"><p class="cl-dd7a5d50"><span class="cl-dd7a315e">840</span></p></td><td class="cl-dd7acdf9"><p class="cl-dd7a5d5a"><span class="cl-dd7a315e">Monday</span></p></td></tr></tbody></table></div>
 ```
 
 #### Imputing missing values
@@ -189,7 +206,7 @@ In general imputing based on the mean does provide a different estimate. The mea
 
 
 ```r
-df_activity%>%
+plot3<-df_activity%>%
   group_by(date)%>%
   summarise(steps_imputed=sum(steps_imputed_mean))%>%
   ggplot(.,aes(x=steps_imputed))+
@@ -200,29 +217,46 @@ df_activity%>%
   theme(plot.background = element_rect(fill = "pink2"),
         panel.background = element_rect(fill="mintcream"),
         panel.grid.minor = element_line(linetype = 2,color = "black"))
+
+png(filename = "plot3.png")
+plot3
 ```
 
 ```
 ## `stat_bin()` using `bins = 30`. Pick better value with `binwidth`.
 ```
 
-![plot of chunk unnamed-chunk-23](figure/unnamed-chunk-23-1.png)
-
 ```r
-df_activity%>%group_by(date)%>%summarise(steps_mean=sum(steps_imputed_mean),step_lm=sum(steps_imputed),step_orig=sum(steps,na.rm = TRUE))%>%gather(key = "type",value = "value",-date)%>%ggplot(.,aes(x=date,y=value,color=type))+geom_line(lty=1,lwd=1)
+dev.off()
 ```
 
-![plot of chunk unnamed-chunk-23](figure/unnamed-chunk-23-2.png)
+```
+## png 
+##   2
+```
+
+```r
+plot4<-df_activity%>%group_by(date)%>%summarise(steps_mean=sum(steps_imputed_mean),step_lm=sum(steps_imputed),step_orig=sum(steps,na.rm = TRUE))%>%gather(key = "type",value = "value",-date)%>%ggplot(.,aes(x=date,y=value,color=type))+geom_line(lty=1,lwd=1)
+
+png(filename = "plot4.png")
+plot4
+dev.off()
+```
+
+```
+## png 
+##   2
+```
 
 
 5. Mean and median
 
 ```{=html}
-<div class="tabwid"><style>.cl-da84d5e8{}.cl-da723a50{font-family:'Arial';font-size:11pt;font-weight:normal;font-style:normal;text-decoration:none;color:rgba(0, 0, 0, 1.00);background-color:transparent;}.cl-da7264c6{margin:0;text-align:right;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:5pt;padding-top:5pt;padding-left:5pt;padding-right:5pt;line-height: 1;background-color:transparent;}.cl-da72b9a8{width:54pt;background-color:transparent;vertical-align: middle;border-bottom: 2pt solid rgba(102, 102, 102, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-da72b9bc{width:54pt;background-color:transparent;vertical-align: middle;border-bottom: 2pt solid rgba(102, 102, 102, 1.00);border-top: 2pt solid rgba(102, 102, 102, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}</style><table class='cl-da84d5e8'>
+<div class="tabwid"><style>.cl-dff81d92{}.cl-dfd0dd36{font-family:'Arial';font-size:11pt;font-weight:normal;font-style:normal;text-decoration:none;color:rgba(0, 0, 0, 1.00);background-color:transparent;}.cl-dfd11576{margin:0;text-align:right;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:5pt;padding-top:5pt;padding-left:5pt;padding-right:5pt;line-height: 1;background-color:transparent;}.cl-dfd195e6{width:54pt;background-color:transparent;vertical-align: middle;border-bottom: 2pt solid rgba(102, 102, 102, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-dfd195fa{width:54pt;background-color:transparent;vertical-align: middle;border-bottom: 2pt solid rgba(102, 102, 102, 1.00);border-top: 2pt solid rgba(102, 102, 102, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}</style><table class='cl-dff81d92'>
 ```
 
 ```{=html}
-<thead><tr style="overflow-wrap:break-word;"><td class="cl-da72b9bc"><p class="cl-da7264c6"><span class="cl-da723a50">mean_step</span></p></td><td class="cl-da72b9bc"><p class="cl-da7264c6"><span class="cl-da723a50">median_step</span></p></td></tr></thead><tbody><tr style="overflow-wrap:break-word;"><td class="cl-da72b9a8"><p class="cl-da7264c6"><span class="cl-da723a50">10,766.19</span></p></td><td class="cl-da72b9a8"><p class="cl-da7264c6"><span class="cl-da723a50">10,766.19</span></p></td></tr></tbody></table></div>
+<thead><tr style="overflow-wrap:break-word;"><td class="cl-dfd195fa"><p class="cl-dfd11576"><span class="cl-dfd0dd36">mean_step</span></p></td><td class="cl-dfd195fa"><p class="cl-dfd11576"><span class="cl-dfd0dd36">median_step</span></p></td></tr></thead><tbody><tr style="overflow-wrap:break-word;"><td class="cl-dfd195e6"><p class="cl-dfd11576"><span class="cl-dfd0dd36">10,766.19</span></p></td><td class="cl-dfd195e6"><p class="cl-dfd11576"><span class="cl-dfd0dd36">10,766.19</span></p></td></tr></tbody></table></div>
 ```
 #### Differences in activity patterns for Weekdays and Weekend
 
@@ -244,7 +278,7 @@ df_activity<-df_activity%>%
 
 
 ```r
-df_activity%>%
+plot5<-df_activity%>%
   ggplot(.,aes(x=interval,y=avg_steps_interval1,color=day_type))+
   geom_line(show.legend = FALSE,lty=1,lwd=1)+scale_x_continuous(breaks = seq(0,2400,by=120))+
   facet_grid(day_type~.)+
@@ -260,8 +294,15 @@ df_activity%>%
         strip.background = element_rect(fill = "pink"),
         strip.placement = "outside",
         strip.text = element_text(face = "bold"))
+
+png(filename = "plot5.png")
+plot5
+dev.off()
 ```
 
-<img src="figure/unnamed-chunk-25-1.png" title="plot of chunk unnamed-chunk-25" alt="plot of chunk unnamed-chunk-25" style="display: block; margin: auto;" />
+```
+## png 
+##   2
+```
 
 Looking at the plot, it shows a higher number of steps taken in each interval for *weekend* compared to *weekdays*. 
