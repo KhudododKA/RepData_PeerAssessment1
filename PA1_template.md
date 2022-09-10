@@ -86,7 +86,7 @@ plot1
 ## Warning: Removed 8 rows containing non-finite values (stat_bin).
 ```
 
-<img src="figure/unnamed-chunk-3-1.png" title="plot of chunk unnamed-chunk-3" alt="plot of chunk unnamed-chunk-3" style="display: block; margin: auto;" />
+<img src="figure/unnamed-chunk-14-1.png" title="plot of chunk unnamed-chunk-14" alt="plot of chunk unnamed-chunk-14" style="display: block; margin: auto;" />
 
 The histogram above shows the total number of steps taken each day. 
 
@@ -182,6 +182,7 @@ kable(d)
 </tbody>
 </table>
 In the above table the row 104 corresponds to *206.1698* average steps taken, which is the highest or the maximum. You can also see that before that row the average steps are lower as well as after that row. 
+
 #### Imputing missing values
 
 1. Total number of missing values in the data
@@ -217,7 +218,7 @@ plot3<-df_activity%>%
   group_by(date)%>%
   summarise(steps_imputed=sum(steps_imputed_mean))%>%
   ggplot(.,aes(x=steps_imputed))+
-  geom_histogram()+
+  geom_histogram(fill="slateblue",alpha=0.7,color="darkblue")+
   theme_classic()+
   labs(title="Number of steps per day",
        caption = "Histogram with normal plot")+
@@ -231,15 +232,21 @@ plot3
 ## `stat_bin()` using `bins = 30`. Pick better value with `binwidth`.
 ```
 
-<img src="figure/unnamed-chunk-8-1.png" title="plot of chunk unnamed-chunk-8" alt="plot of chunk unnamed-chunk-8" style="display: block; margin: auto;" />
+<img src="figure/unnamed-chunk-19-1.png" title="plot of chunk unnamed-chunk-19" alt="plot of chunk unnamed-chunk-19" style="display: block; margin: auto;" />
 
 ```r
-plot4<-df_activity%>%group_by(date)%>%summarise(steps_mean=sum(steps_imputed_mean),step_lm=sum(steps_imputed),step_orig=sum(steps,na.rm = TRUE))%>%gather(key = "type",value = "value",-date)%>%ggplot(.,aes(x=date,y=value,color=type))+geom_line(lty=1,lwd=1)
-
+plot4<-df_activity%>%group_by(date)%>%summarise(steps_mean=sum(steps_imputed_mean),step_lm=sum(steps_imputed),step_orig=sum(steps,na.rm = TRUE))%>%gather(key = "type",value = "value",-date)%>%ggplot(.,aes(x=date,y=value,color=type))+geom_line(lty=1,lwd=1)+
+  labs(title = "Comparison of imputation approaches",subtitle = "Mean vs linear regression estimates")+
+  scale_color_manual("",labels=c("Linear","Original","Mean"),
+                     values = c("gold3","red","blue"))+
+  theme(plot.background = element_rect(fill = "pink2"),
+        panel.background = element_rect(fill = "mintcream"),
+        panel.grid.minor = element_line(linetype = 2,color = "black"),
+        legend.position = "bottom")
 plot4
 ```
 
-<img src="figure/unnamed-chunk-9-1.png" title="plot of chunk unnamed-chunk-9" alt="plot of chunk unnamed-chunk-9" style="display: block; margin: auto;" />
+<img src="figure/unnamed-chunk-20-1.png" title="plot of chunk unnamed-chunk-20" alt="plot of chunk unnamed-chunk-20" style="display: block; margin: auto;" />
 
 
 5. Mean and median
@@ -298,6 +305,6 @@ plot5<-df_activity%>%
 plot5
 ```
 
-<img src="figure/unnamed-chunk-11-1.png" title="plot of chunk unnamed-chunk-11" alt="plot of chunk unnamed-chunk-11" style="display: block; margin: auto;" />
+<img src="figure/unnamed-chunk-22-1.png" title="plot of chunk unnamed-chunk-22" alt="plot of chunk unnamed-chunk-22" style="display: block; margin: auto;" />
 
 Looking at the plot, it shows a higher number of steps taken in each interval for *weekend* compared to *weekdays*. 
