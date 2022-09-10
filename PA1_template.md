@@ -1,10 +1,9 @@
----
-title: "Reproducible Research Assignment 1"
----
+# Reproducible Research: Assignment 1
+***
 
 
 
-# Preparing the data
+## Preparing the data
 
 This stage will take two steps; reading the data and processing
 
@@ -87,7 +86,7 @@ plot1
 ## Warning: Removed 8 rows containing non-finite values (stat_bin).
 ```
 
-<img src="figure/unnamed-chunk-4-1.png" title="steps per day hist" alt="steps per day hist" style="display: block; margin: auto;" />
+<img src="figure/unnamed-chunk-3-1.png" title="steps per day hist" alt="steps per day hist" style="display: block; margin: auto;" />
 
 The histogram above shows the total number of steps taken each day. 
 
@@ -157,17 +156,31 @@ which.max(df_activity$avg_steps_interval)
 ```r
 d<-df_activity[103:105,]
 d<-d%>%select(interval,avg_steps_interval)
-datatable(d)
+kable(d)
 ```
 
-```
-## PhantomJS not found. You can install it with webshot::install_phantomjs(). If it is installed, please make sure the phantomjs executable can be found via the PATH variable.
-## PhantomJS not found. You can install it with webshot::install_phantomjs(). If it is installed, please make sure the phantomjs executable can be found via the PATH variable.
-```
-
-```
-## Error in path.expand(path): invalid 'path' argument
-```
+<table>
+ <thead>
+  <tr>
+   <th style="text-align:right;"> interval </th>
+   <th style="text-align:right;"> avg_steps_interval </th>
+  </tr>
+ </thead>
+<tbody>
+  <tr>
+   <td style="text-align:right;"> 830 </td>
+   <td style="text-align:right;"> 177.3019 </td>
+  </tr>
+  <tr>
+   <td style="text-align:right;"> 835 </td>
+   <td style="text-align:right;"> 206.1698 </td>
+  </tr>
+  <tr>
+   <td style="text-align:right;"> 840 </td>
+   <td style="text-align:right;"> 195.9245 </td>
+  </tr>
+</tbody>
+</table>
 
 #### Imputing missing values
 
@@ -219,7 +232,7 @@ plot3
 ## `stat_bin()` using `bins = 30`. Pick better value with `binwidth`.
 ```
 
-<img src="figure/unnamed-chunk-9-1.png" title="plot of chunk unnamed-chunk-9" alt="plot of chunk unnamed-chunk-9" style="display: block; margin: auto;" />
+<img src="figure/unnamed-chunk-8-1.png" title="plot of chunk unnamed-chunk-8" alt="plot of chunk unnamed-chunk-8" style="display: block; margin: auto;" />
 
 ```r
 plot4<-df_activity%>%group_by(date)%>%summarise(steps_mean=sum(steps_imputed_mean),step_lm=sum(steps_imputed),step_orig=sum(steps,na.rm = TRUE))%>%gather(key = "type",value = "value",-date)%>%ggplot(.,aes(x=date,y=value,color=type))+geom_line(lty=1,lwd=1)
@@ -227,15 +240,25 @@ plot4<-df_activity%>%group_by(date)%>%summarise(steps_mean=sum(steps_imputed_mea
 plot4
 ```
 
-<img src="figure/unnamed-chunk-9-2.png" title="plot of chunk unnamed-chunk-9" alt="plot of chunk unnamed-chunk-9" style="display: block; margin: auto;" />
+<img src="figure/unnamed-chunk-8-2.png" title="plot of chunk unnamed-chunk-8" alt="plot of chunk unnamed-chunk-8" style="display: block; margin: auto;" />
 
 
 5. Mean and median
 
-
-```
-## Error in as.data.frame.default(x): cannot coerce class '"flextable"' to a data.frame
-```
+<table>
+ <thead>
+  <tr>
+   <th style="text-align:right;"> mean_step </th>
+   <th style="text-align:right;"> median_step </th>
+  </tr>
+ </thead>
+<tbody>
+  <tr>
+   <td style="text-align:right;"> 10766.19 </td>
+   <td style="text-align:right;"> 10766.19 </td>
+  </tr>
+</tbody>
+</table>
 #### Differences in activity patterns for Weekdays and Weekend
 
 In this final part, I will look at the difference in activity pattern depending on the day of the week. In other words, I will compare the weekdays steps taken to the weekend steps taken to see if there discernible differences. First, I will create the factor variable *day_type* to differentiate between *weekend* and *weekdays* and then I will create a graph using *ggplot2* package. While, the plot looks different from the *example* plot provided, it provides the answer to the question in a similar fashion as the lattice graph would. 
@@ -276,6 +299,6 @@ plot5<-df_activity%>%
 plot5
 ```
 
-<img src="figure/unnamed-chunk-11-1.png" title="plot of chunk unnamed-chunk-11" alt="plot of chunk unnamed-chunk-11" style="display: block; margin: auto;" />
+<img src="figure/unnamed-chunk-10-1.png" title="plot of chunk unnamed-chunk-10" alt="plot of chunk unnamed-chunk-10" style="display: block; margin: auto;" />
 
 Looking at the plot, it shows a higher number of steps taken in each interval for *weekend* compared to *weekdays*. 

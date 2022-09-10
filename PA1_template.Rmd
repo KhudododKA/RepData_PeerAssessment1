@@ -1,6 +1,5 @@
----
-title: "Reproducible Research Assignment 1"
----
+# Reproducible Research: Assignment 1
+***
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
@@ -12,7 +11,7 @@ library(DT)
 library(kableExtra)
 ```
 
-# Preparing the data
+## Preparing the data
 
 This stage will take two steps; reading the data and processing
 
@@ -118,7 +117,7 @@ To find the maximum steps in each interval, use *which.max* command to locate th
 which.max(df_activity$avg_steps_interval)
 d<-df_activity[103:105,]
 d<-d%>%select(interval,avg_steps_interval)
-datatable(d)
+kable(d)
 ```
 
 #### Imputing missing values
@@ -183,7 +182,6 @@ df_analytic1<-df_activity%>%
 
 res1<-df_analytic1%>%summarise(mean_step=mean(steps_imputed_mean,na.rm = TRUE),
                              median_step=median(steps_imputed_mean,na.rm = TRUE))
-res1<-flextable::flextable(res1)
 kable(res1)
 ```
 #### Differences in activity patterns for Weekdays and Weekend
